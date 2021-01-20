@@ -1,89 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainActivity"
-    tools:showIn="@layout/activity_main">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/main_header_image"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/colorPrimaryDark"
-        android:src="@drawable/ic_cloud_download_24"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintDimensionRatio="2:1"
-        app:tint="@color/purple_200" />
+    <data>
+        <variable
+            name="mainViewModel"
+            type="com.udacity.nanodegree.loadapp.MainViewModel" />
+    </data>
 
-    <RadioGroup
-        android:id="@+id/main_option_group"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:padding="8dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@id/main_custom_button"
-        app:layout_constraintEnd_toEndOf="@id/main_guideline_end"
-        app:layout_constraintStart_toStartOf="@id/main_guideline_start"
-        app:layout_constraintTop_toBottomOf="@id/main_header_image">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_content_root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".MainActivity"
+        tools:showIn="@layout/activity_main">
 
-        <com.google.android.material.radiobutton.MaterialRadioButton
-            android:id="@+id/main_option_glide"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_content_header_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/colorPrimaryDark"
+            android:src="@drawable/ic_cloud_download_24"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="2:1"
+            app:tint="@color/purple_200" />
+
+        <RadioGroup
+            android:id="@+id/main_content_option_group"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:checkedButton="@={mainViewModel.checkedId}"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@id/main_content_custom_button"
+            app:layout_constraintEnd_toEndOf="@id/main_content_guideline_end"
+            app:layout_constraintStart_toStartOf="@id/main_content_guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/main_content_header_image">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/main_content_option_glide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@string/glide_by_bumptech"
+                android:textSize="18sp" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/main_content_option_udacity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@string/current_repository_by_udacity"
+                android:textSize="18sp" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/main_content_option_retrofit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@string/retrofit_by_square_inc"
+                android:textSize="18sp" />
+        </RadioGroup>
+
+        <com.udacity.nanodegree.loadapp.LoadingButton
+            android:id="@+id/main_content_custom_button"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/custom_button_height"
+            app:layout_constraintBottom_toBottomOf="@id/main_content_guideline_bottom"
+            app:layout_constraintEnd_toEndOf="@id/main_content_guideline_end"
+            app:layout_constraintStart_toStartOf="@id/main_content_guideline_start" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/main_content_guideline_start"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/glide_by_bumptech"
-            android:textSize="18sp" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
 
-        <com.google.android.material.radiobutton.MaterialRadioButton
-            android:id="@+id/main_option_udacity"
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/main_content_guideline_end"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/current_repository_by_udacity"
-            android:textSize="18sp" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
 
-        <com.google.android.material.radiobutton.MaterialRadioButton
-            android:id="@+id/main_option_retrofit"
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/main_content_guideline_bottom"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/retrofit_by_square_inc"
-            android:textSize="18sp" />
-    </RadioGroup>
-
-    <com.udacity.nanodegree.loadapp.LoadingButton
-        android:id="@+id/main_custom_button"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/custom_button_height"
-        app:layout_constraintBottom_toBottomOf="@id/main_guideline_bottom"
-        app:layout_constraintEnd_toEndOf="@id/main_guideline_end"
-        app:layout_constraintStart_toStartOf="@id/main_guideline_start" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/main_guideline_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/main_guideline_end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/main_guideline_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="16dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="16dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
