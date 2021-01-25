@@ -21,6 +21,7 @@ class LoadingButton @JvmOverloads constructor(
     private val backgroundColor: Int =
         ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
     private val drawColor = ResourcesCompat.getColor(resources, R.color.colorAccent, null)
+    private val textColor = ResourcesCompat.getColor(resources, R.color.white, null)
     private val rectangleProgressColor =
         ResourcesCompat.getColor(resources, R.color.colorPrimaryDark, null)
     private var rectF: RectF
@@ -40,7 +41,7 @@ class LoadingButton @JvmOverloads constructor(
     private lateinit var extraBitmap: Bitmap
 
     private val textPaint = Paint().apply {
-        color = drawColor
+        color = textColor
         textSize = fontSize
         textAlign = Paint.Align.CENTER
     }
