@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.udacity.nanodegree.loadapp.databinding.ActivityMainBinding
 
@@ -41,6 +42,25 @@ class MainActivity : AppCompatActivity() {
         binding.layoutMainContent.mainContentCustomButton.setOnClickListener {
             download()
         }
+        viewModel.checkedId.observe(this) {
+            viewModel.selectedURL.value = when (it) {
+                R.id.main_content_option_glide -> MainViewModel.GLIDE_URL
+                R.id.main_content_option_udacity -> MainViewModel.GITHUB_URL
+                R.id.main_content_option_retrofit -> MainViewModel.RETROFIT_URL
+                else -> ""
+
+            }
+        }
+
+        viewModel.selectedURL.observe(this) {
+            viewModel.selectedName.value = when (it) {
+                MainViewModel.RETROFIT_URL -> getString(R.string.retrofit_by_square_inc)
+                MainViewModel.GLIDE_URL -> getString(R.string.glide_by_bumptech)
+                MainViewModel.GITHUB_URL -> getString(R.string.current_repository_by_udacity)
+                else -> ""
+            }
+        }
+
         createChannel(
             getString(R.string.load_app_channel_id),
             getString(R.string.load_app_channel_name)
@@ -75,7 +95,21 @@ class MainActivity : AppCompatActivity() {
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+            displayNotification()
         }
+    }
+
+    private fun displayNotification() {
+        val notificationManager = ContextCompat.getSystemService(
+            this,
+            NotificationManager::class.java
+        ) as NotificationManager
+
+        notificationManager.sendNotification(
+            "Download item complete",
+            this,
+            viewModel.selectedName.value ?: ""
+        )
     }
 
     private fun download() {
