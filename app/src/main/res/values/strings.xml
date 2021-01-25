@@ -17,4 +17,7 @@
     <string name="glide_by_bumptech">Glide - Image loading library by BumpTech</string>
     <string name="select_file_to_download_message">Please select the file to download</string>
 
+    <string name="load_app_channel_id">channel_id1</string>
+    <string name="load_app_channel_name">Load</string>
+    <string name="channel_description">Download completed notifier</string>
 </resources>
