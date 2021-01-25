@@ -15,5 +15,6 @@
     <string name="retrofit_by_square_inc">Retrofit - Type-safe HTTP client for Android and Java by Square Inc</string>
     <string name="current_repository_by_udacity">LoadApp - current repository by Udacity</string>
     <string name="glide_by_bumptech">Glide - Image loading library by BumpTech</string>
+    <string name="select_file_to_download_message">Please select the file to download</string>
 
 </resources>
