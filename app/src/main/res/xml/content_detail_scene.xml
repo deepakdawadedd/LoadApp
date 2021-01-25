@@ -38,7 +38,7 @@
 
         <Constraint
             android:id="@+id/content_details_file_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:alpha="1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +46,7 @@
             app:layout_constraintTop_toTopOf="@id/content_details_file_name_label" />
         <Constraint
             android:id="@+id/content_details_status"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:alpha="1"
             app:layout_constraintStart_toStartOf="@id/content_details_file_name"
