@@ -20,4 +20,7 @@
     <string name="load_app_channel_id">channel_id1</string>
     <string name="load_app_channel_name">Load</string>
     <string name="channel_description">Download completed notifier</string>
+    <string name="details_file_name_lable">File Name:</string>
+    <string name="details_status_label">Status</string>
+    <string name="details_action_ok_button">OK</string>
 </resources>

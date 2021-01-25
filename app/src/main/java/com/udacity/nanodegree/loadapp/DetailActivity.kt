@@ -4,7 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_detail.*
+import androidx.databinding.DataBindingUtil
+import com.udacity.nanodegree.loadapp.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
     companion object {
@@ -16,10 +17,24 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    private lateinit var binding: ActivityDetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
-        setSupportActionBar(toolbar)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
+        setSupportActionBar(binding.detailsToolbar)
+        if (intent.hasExtra(DOWNLOAD_FILE)) {
+            binding.detailsContentLayout.contentDetailsFileName.text =
+                intent.getStringExtra(DOWNLOAD_FILE)
+            binding.detailsContentLayout.contentDetailsStatus.text = "Success"
+        }
+
+        binding.detailsContentLayout.contentDetailOkButton.setOnClickListener {
+
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
+
     }
 
 }
